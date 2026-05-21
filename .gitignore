@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Data (too large for GitHub)
+data/
+
+# Environment
+.env
+venv/
+
+# VS Code
+.vscode/
