@@ -49,7 +49,7 @@ with col2:
     business_travel = st.selectbox("Business Travel", ["Non-Travel", "Travel_Rarely", "Travel_Frequently"])
 
 with col3:
-    st.subheader("💰 Compensation & Experience")
+    st.subheader(" Compensation & Experience")
     monthly_income = st.number_input("Monthly Income ($)", 1000, 20000, 5000)
     daily_rate = st.number_input("Daily Rate", 100, 1500, 800)
     hourly_rate = st.number_input("Hourly Rate", 30, 100, 65)
@@ -68,7 +68,7 @@ st.divider()
 col4, col5 = st.columns(2)
 
 with col4:
-    st.subheader("🎓 Education & Training")
+    st.subheader(" Education & Training")
     education_field = st.selectbox("Education Field", [
         "Life Sciences", "Medical", "Marketing",
         "Technical Degree", "Human Resources", "Other"
@@ -79,7 +79,7 @@ with col4:
                                        format_func=lambda x: {3:"Excellent", 4:"Outstanding"}[x])
 
 with col5:
-    st.subheader("😊 Satisfaction & Balance")
+    st.subheader(" Satisfaction & Balance")
     environment_satisfaction = st.slider("Environment Satisfaction", 1, 4, 3)
     relationship_satisfaction = st.slider("Relationship Satisfaction", 1, 4, 3)
     work_life_balance = st.slider("Work Life Balance", 1, 4, 3)
@@ -87,7 +87,7 @@ with col5:
 st.divider()
 
 # ── Predict Button ───────────────────────────────────────────────
-if st.button("🔍 Predict Attrition Risk", use_container_width=True):
+if st.button(" Predict Attrition Risk", use_container_width=True):
 
     # Build input dict with all raw features
     input_dict = {
@@ -169,10 +169,10 @@ if st.button("🔍 Predict Attrition Risk", use_container_width=True):
     probability = model.predict_proba(input_scaled)[0][1]
 
     # ── Display Result ───────────────────────────────────────────
-    st.subheader("🎯 Prediction Result")
+    st.subheader(" Prediction Result")
 
     if prediction == 1:
-        st.error(f"⚠️ HIGH RISK — This employee is likely to leave")
+        st.error(f" HIGH RISK — This employee is likely to leave")
         st.metric("Probability of Leaving", f"{probability*100:.1f}%")
         st.markdown("**Recommended HR Actions:**")
         st.markdown("-  Schedule a one-on-one retention conversation")
@@ -180,7 +180,7 @@ if st.button("🔍 Predict Attrition Risk", use_container_width=True):
         st.markdown("-  Discuss career growth opportunities")
         st.markdown("-  Review overtime workload if applicable")
     else:
-        st.success(f"✅ LOW RISK — This employee is likely to stay")
+        st.success(f" LOW RISK — This employee is likely to stay")
         st.metric("Probability of Leaving", f"{probability*100:.1f}%")
         st.markdown("**Keep up the good work:**")
         st.markdown("-  Continue current engagement practices")
