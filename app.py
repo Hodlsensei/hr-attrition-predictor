@@ -2,11 +2,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ── Load saved model, scaler and feature names ──────────────────
-model = joblib.load('models/hr_attrition_model.pkl')
-scaler = joblib.load('models/scaler.pkl')
-feature_names = joblib.load('models/feature_names.pkl')
+model = joblib.load(os.path.join(BASE_DIR, 'models/hr_attrition_model.pkl'))
+scaler = joblib.load(os.path.join(BASE_DIR, 'models/scaler.pkl'))
+feature_names = joblib.load(os.path.join(BASE_DIR, 'models/feature_names.pkl'))
 
 # ── Page config ─────────────────────────────────────────────────
 st.set_page_config(
@@ -33,7 +35,7 @@ with col1:
                                                      3:"Bachelor", 4:"Master", 5:"Doctor"}[x])
 
 with col2:
-    st.subheader("💼 Job Info")
+    st.subheader(" Job Info")
     department = st.selectbox("Department", ["Sales", "Research & Development", "Human Resources"])
     job_role = st.selectbox("Job Role", [
         "Sales Executive", "Research Scientist", "Laboratory Technician",
@@ -173,13 +175,13 @@ if st.button("🔍 Predict Attrition Risk", use_container_width=True):
         st.error(f"⚠️ HIGH RISK — This employee is likely to leave")
         st.metric("Probability of Leaving", f"{probability*100:.1f}%")
         st.markdown("**Recommended HR Actions:**")
-        st.markdown("- 💬 Schedule a one-on-one retention conversation")
-        st.markdown("- 💰 Review compensation and benefits")
-        st.markdown("- 📈 Discuss career growth opportunities")
-        st.markdown("- ⏰ Review overtime workload if applicable")
+        st.markdown("-  Schedule a one-on-one retention conversation")
+        st.markdown("-  Review compensation and benefits")
+        st.markdown("-  Discuss career growth opportunities")
+        st.markdown("-  Review overtime workload if applicable")
     else:
         st.success(f"✅ LOW RISK — This employee is likely to stay")
         st.metric("Probability of Leaving", f"{probability*100:.1f}%")
         st.markdown("**Keep up the good work:**")
-        st.markdown("- 🌟 Continue current engagement practices")
-        st.markdown("- 📊 Monitor satisfaction scores periodically")
+        st.markdown("-  Continue current engagement practices")
+        st.markdown("-  Monitor satisfaction scores periodically")
